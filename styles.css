@@ -134,6 +134,13 @@ nav a {
   padding: 86px 0 40px;
 }
 
+.hero-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 26px;
+  align-items: start;
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -168,6 +175,120 @@ h1 {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.hero-demo {
+  background: #fff8f0;
+  border: 1px solid #e8d9c6;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.demo-label {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.demo-screen {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fffdf9;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.message-lane {
+  min-height: 84px;
+  position: relative;
+  overflow: hidden;
+}
+
+.msg {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 18%;
+  background: #f4efe6;
+  border: 1px solid #e5d9ca;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  color: #3d4748;
+  opacity: 0;
+  animation: sortMessage 7.2s ease-in-out infinite;
+}
+
+.msg:nth-child(1) {
+  top: 4px;
+  animation-delay: 0s;
+}
+
+.msg:nth-child(2) {
+  top: 30px;
+  animation-delay: 1.9s;
+}
+
+.msg:nth-child(3) {
+  top: 56px;
+  animation-delay: 3.8s;
+}
+
+.sort-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sort-tags span {
+  display: inline-block;
+  border: 1px solid #ead6c1;
+  background: #fff;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  animation: tagPulse 2.4s ease-in-out infinite;
+}
+
+.sort-tags span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.sort-tags span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.skeleton-loader {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.skeleton-loader span {
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #efe7da 20%, #f8f4ed 45%, #efe7da 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
+.skeleton-loader span:nth-child(1) {
+  width: 86%;
+}
+
+.skeleton-loader span:nth-child(2) {
+  width: 74%;
+}
+
+.skeleton-loader span:nth-child(3) {
+  width: 62%;
 }
 
 .stats {
@@ -250,6 +371,73 @@ h1 {
 .card p {
   color: var(--muted);
   line-height: 1.6;
+}
+
+.onboarding {
+  text-align: center;
+}
+
+.onboarding-flow {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 45%;
+  height: 2px;
+  background: #eadfd1;
+}
+
+.flow-line::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 0 6px rgba(227, 93, 63, 0.15);
+  animation: flowTravel 4.5s ease-in-out infinite;
+}
+
+.flow-step {
+  position: relative;
+  z-index: 1;
+  background: #fffaf2;
+  border: 1px solid #eddac6;
+  border-radius: 12px;
+  padding: 14px;
+  animation: stepGlow 4.5s ease-in-out infinite;
+}
+
+.flow-step h3 {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.flow-step p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.flow-step:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+.flow-step:nth-child(4) {
+  animation-delay: 3s;
 }
 
 .reviews .section-title {
@@ -451,6 +639,69 @@ li {
   margin-bottom: 16px;
 }
 
+.mini-signup {
+  margin-top: 16px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.micro-input {
+  min-width: 250px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.micro-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(15, 128, 121, 0.16);
+  transform: translateY(-1px);
+}
+
+.micro-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.micro-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.28) 45%, transparent 65%);
+  transform: translateX(-120%);
+}
+
+.micro-btn:hover::after {
+  animation: btnSweep 700ms ease;
+}
+
+.micro-btn:active {
+  transform: scale(0.98);
+}
+
+.mini-signup.is-sent .micro-btn {
+  background: var(--brand);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .site-footer {
   border-top: 1px solid rgba(23, 33, 34, 0.1);
   padding: 22px 0 34px;
@@ -493,6 +744,81 @@ li {
   }
 }
 
+@keyframes sortMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  12% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(42%);
+  }
+  85% {
+    opacity: 0.35;
+    transform: translateX(58%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(58%);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes tagPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes flowTravel {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 48%;
+  }
+  100% {
+    left: 96%;
+  }
+}
+
+@keyframes stepGlow {
+  0%,
+  100% {
+    border-color: #eddac6;
+    box-shadow: none;
+  }
+  40% {
+    border-color: #efb49f;
+    box-shadow: 0 0 0 4px rgba(227, 93, 63, 0.12);
+  }
+}
+
+@keyframes btnSweep {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -507,6 +833,8 @@ li {
 }
 
 @media (max-width: 900px) {
+  .hero-shell,
+  .onboarding-flow,
   .problem-outcome .cards,
   .cards,
   .pricing-grid,
@@ -543,5 +871,9 @@ li {
 
   .carousel-btn {
     display: none;
+  }
+
+  .micro-input {
+    min-width: min(280px, 100%);
   }
 }

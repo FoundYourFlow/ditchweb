@@ -34,16 +34,41 @@
 
     <main>
       <section class="hero container">
-        <p class="eyebrow reveal">Messaging-native AI platform</p>
-        <h1 class="reveal">AI in your messages. No apps required.</h1>
-        <p class="lead reveal">
-          Ditch is your personal AI assistant in text. It handles reminders,
-          scheduling, research, and analysis so you can decide and move faster
-          without switching apps.
-        </p>
-        <div class="hero-cta reveal">
-          <a class="btn btn-dark" href="#demo">Get Ditch</a>
-          <a class="btn btn-ghost" href="#how">See How It Works</a>
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <p class="eyebrow reveal">Messaging-native AI platform</p>
+            <h1 class="reveal">AI in your messages. No apps required.</h1>
+            <p class="lead reveal">
+              Ditch is your personal AI assistant in text. It handles reminders,
+              scheduling, research, and analysis so you can decide and move faster
+              without switching apps.
+            </p>
+            <div class="hero-cta reveal">
+              <a class="btn btn-dark" href="#demo">Get Ditch</a>
+              <a class="btn btn-ghost" href="#how">See How It Works</a>
+            </div>
+          </div>
+
+          <aside class="hero-demo reveal" aria-label="AI message sorting demo">
+            <p class="demo-label">Live AI sorting</p>
+            <div class="demo-screen">
+              <div class="message-lane">
+                <p class="msg">"Remind me to call Alex at 3."</p>
+                <p class="msg">"Summarize this PDF for class."</p>
+                <p class="msg">"Can this table fit my room?"</p>
+              </div>
+              <div class="sort-tags">
+                <span>Reminders</span>
+                <span>Study</span>
+                <span>Visual Help</span>
+              </div>
+            </div>
+            <div class="skeleton-loader" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </aside>
         </div>
 
         <div class="stats reveal">
@@ -155,6 +180,25 @@
               Get recommendations, schedule updates, summaries, and next steps
               you can use immediately.
             </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="onboarding" class="container section onboarding">
+        <h2 class="section-title reveal">Onboarding flow</h2>
+        <div class="onboarding-flow reveal">
+          <div class="flow-line" aria-hidden="true"></div>
+          <article class="flow-step">
+            <h3>Step 1</h3>
+            <p>Send your first message.</p>
+          </article>
+          <article class="flow-step">
+            <h3>Step 2</h3>
+            <p>Connect calendar and preferences.</p>
+          </article>
+          <article class="flow-step">
+            <h3>Step 3</h3>
+            <p>Get tailored actions instantly.</p>
           </article>
         </div>
       </section>
@@ -285,7 +329,11 @@
         <p>
           Ditch keeps things simple: one chat, clear answers, better decisions.
         </p>
-        <a class="btn btn-dark" href="#">Start with Ditch</a>
+        <form class="mini-signup" id="mini-signup">
+          <label class="sr-only" for="email-input">Email</label>
+          <input id="email-input" class="micro-input" type="email" placeholder="Enter your email" required />
+          <button class="btn btn-dark micro-btn" id="signup-btn" type="submit">Start with Ditch</button>
+        </form>
       </section>
     </main>
 

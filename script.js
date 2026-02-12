@@ -14,6 +14,8 @@ const planCta = document.querySelector("#plan-cta");
 const reviewsTrack = document.querySelector("#reviews-track");
 const reviewsPrev = document.querySelector("#reviews-prev");
 const reviewsNext = document.querySelector("#reviews-next");
+const miniSignup = document.querySelector("#mini-signup");
+const signupBtn = document.querySelector("#signup-btn");
 
 if (menuBtn && nav) {
   menuBtn.addEventListener("click", () => {
@@ -41,7 +43,9 @@ const observer = new IntersectionObserver(
 );
 
 revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${index * 40}ms`;
+  const isFaqItem = Boolean(item.closest(".faq"));
+  const delay = isFaqItem ? 0 : Math.min(index * 40, 320);
+  item.style.transitionDelay = `${delay}ms`;
   observer.observe(item);
 });
 
@@ -170,4 +174,25 @@ if (reviewsTrack) {
   reviewsTrack.addEventListener("touchstart", stopReviewsAuto, { passive: true });
   reviewsTrack.addEventListener("touchend", startReviewsAuto);
   startReviewsAuto();
+}
+
+if (miniSignup && signupBtn) {
+  const defaultBtnText = signupBtn.textContent;
+  miniSignup.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!miniSignup.checkValidity()) {
+      miniSignup.reportValidity();
+      return;
+    }
+
+    miniSignup.classList.add("is-sent");
+    signupBtn.textContent = "Thanks! You're in";
+    signupBtn.disabled = true;
+
+    window.setTimeout(() => {
+      signupBtn.textContent = defaultBtnText;
+      signupBtn.disabled = false;
+      miniSignup.classList.remove("is-sent");
+    }, 1800);
+  });
 }
