@@ -22,6 +22,10 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
   background: radial-gradient(circle at 10% 10%, #ffecce 0%, transparent 42%),
@@ -179,6 +183,15 @@ h1 {
   border-radius: 18px;
   padding: 18px;
   box-shadow: var(--shadow);
+  animation: floatCard 6.5s ease-in-out infinite;
+}
+
+.stats div:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.stats div:nth-child(3) {
+  animation-delay: 0.8s;
 }
 
 .stats strong {
@@ -207,6 +220,10 @@ h1 {
   gap: 16px;
 }
 
+.problem-outcome .cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .card,
 .price-card,
 .faq details,
@@ -215,6 +232,15 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow: var(--shadow);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover,
+.price-card:hover,
+.faq details:hover,
+.demo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 55px rgba(23, 33, 34, 0.14);
 }
 
 .card {
@@ -226,10 +252,83 @@ h1 {
   line-height: 1.6;
 }
 
+.reviews .section-title {
+  text-align: center;
+}
+
+.reviews-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 6px 2px 8px;
+  scrollbar-width: none;
+}
+
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 min(360px, 84%);
+  scroll-snap-align: start;
+  min-height: 220px;
+}
+
+.review .review-stars {
+  margin: 0 0 10px;
+  color: #f4c542;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.review-text {
+  font-size: 1.02rem;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+
+.review-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.carousel-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.carousel-btn:hover {
+  transform: translateY(-1px);
+  background: #fff7ef;
+}
+
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 16px;
+  justify-items: center;
 }
 
 .price-card {
@@ -258,6 +357,10 @@ h1 {
   margin: 10px 0 14px;
   font-size: 2rem;
   font-family: "Fraunces", serif;
+}
+
+.price strong {
+  font-weight: 700;
 }
 
 .price span {
@@ -289,6 +392,53 @@ li {
 .faq p {
   color: var(--muted);
   line-height: 1.6;
+  transform-origin: top;
+}
+
+.faq details[open] p {
+  animation: faqOpen 260ms ease;
+}
+
+.pricing,
+.faq {
+  text-align: center;
+}
+
+.single-price-card {
+  width: min(520px, 100%);
+  text-align: left;
+}
+
+.billing-toggle {
+  margin: 0 auto 20px;
+  background: rgba(255, 253, 249, 0.8);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.billing-toggle button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.billing-toggle button.is-active {
+  background: var(--text);
+  color: #fff;
+}
+
+.faq details {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .demo {
@@ -322,7 +472,42 @@ li {
   transform: translateY(0);
 }
 
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes faqOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media (max-width: 900px) {
+  .problem-outcome .cards,
   .cards,
   .pricing-grid,
   .stats {
@@ -350,5 +535,13 @@ li {
 
   nav.open {
     display: flex;
+  }
+
+  .reviews-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-btn {
+    display: none;
   }
 }
