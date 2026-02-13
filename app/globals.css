@@ -331,6 +331,28 @@ textarea:focus {
   text-decoration: none;
 }
 
+.footer-newsletter-form {
+  margin-top: 6px;
+  justify-content: flex-start;
+}
+
+.footer-newsletter-form input {
+  width: min(240px, 100%);
+}
+
+.footer-newsletter-card {
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px;
+}
+
+.footer-newsletter-title {
+  margin: 0;
+  font-weight: 700;
+}
+
 .footer-bottom {
   margin-top: 18px;
   border-top: 1px solid var(--line);

@@ -150,22 +150,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      <section className="section" id="newsletter">
-        <div className="container card newsletter">
-          <h2>Join the newsletter</h2>
-          <p className="muted">Product updates and practical AI workflows.</p>
-          <form className="newsletter-form">
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email
-            </label>
-            <input id="newsletter-email" type="email" placeholder="you@company.com" required />
-            <button type="submit" className="btn btn-primary">
-              Join
-            </button>
-          </form>
-        </div>
-      </section>
     </>
   );
 }

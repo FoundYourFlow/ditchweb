@@ -739,6 +739,37 @@ li {
   gap: 8px;
 }
 
+.footer-newsletter .mini-signup {
+  margin-top: 10px;
+  display: flex;
+}
+
+.footer-newsletter .micro-input {
+  min-width: 200px;
+}
+
+.footer-newsletter-card {
+  margin-top: 6px;
+  background: rgba(255, 253, 249, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.footer-newsletter-title {
+  margin: 0;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.footer-newsletter-sub {
+  margin-top: 4px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .footer-links a {
   color: var(--muted);
   text-decoration: none;
@@ -757,6 +788,10 @@ li {
 .site-footer p {
   margin: 0;
   color: var(--muted);
+}
+
+#demo {
+  margin-bottom: 24px;
 }
 
 .page-top {

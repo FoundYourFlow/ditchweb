@@ -22,6 +22,24 @@ export default function SiteFooter() {
           <a href="https://ditch.app" target="_blank" rel="noreferrer">
             ditch.app
           </a>
+          <div className="footer-newsletter-card">
+            <p className="footer-newsletter-title">Join our newsletter</p>
+            <p className="muted">Product updates and practical AI tips.</p>
+            <form className="newsletter-form footer-newsletter-form">
+              <label htmlFor="footer-newsletter-email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="footer-newsletter-email"
+                type="email"
+                placeholder="Email for updates"
+                required
+              />
+              <button type="submit" className="btn btn-primary">
+                Join
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div className="container footer-bottom">

@@ -15,6 +15,7 @@ const reviewsTrack = document.querySelector("#reviews-track");
 const reviewsPrev = document.querySelector("#reviews-prev");
 const reviewsNext = document.querySelector("#reviews-next");
 const emailCaptureForms = document.querySelectorAll(".js-email-capture");
+const reviewCards = reviewsTrack ? Array.from(reviewsTrack.querySelectorAll(".review")) : [];
 
 if (menuBtn && nav) {
   menuBtn.addEventListener("click", () => {
@@ -102,51 +103,82 @@ billingButtons.forEach((button) => {
 setPlan("monthly");
 
 function getReviewStep() {
-  if (!reviewsTrack) {
+  if (!reviewsTrack || reviewCards.length === 0) {
     return 0;
   }
 
-  const firstCard = reviewsTrack.querySelector(".review");
-  const gap = 16;
-  return firstCard ? firstCard.clientWidth + gap : 0;
+  const firstCard = reviewCards[0];
+  const secondCard = reviewCards[1];
+  if (!firstCard) {
+    return 0;
+  }
+
+  if (secondCard) {
+    return Math.max(1, secondCard.offsetLeft - firstCard.offsetLeft);
+  }
+
+  return firstCard.clientWidth + 16;
+}
+
+let currentReviewIndex = 0;
+
+function syncCurrentReviewIndex() {
+  if (!reviewsTrack || reviewCards.length === 0) {
+    return;
+  }
+
+  const step = getReviewStep();
+  if (!step) {
+    return;
+  }
+
+  currentReviewIndex = Math.round(reviewsTrack.scrollLeft / step);
+}
+
+function scrollToReview(index) {
+  if (!reviewsTrack || reviewCards.length === 0) {
+    return;
+  }
+
+  const step = getReviewStep();
+  if (!step) {
+    return;
+  }
+
+  currentReviewIndex = (index + reviewCards.length) % reviewCards.length;
+  reviewsTrack.scrollTo({ left: currentReviewIndex * step, behavior: "smooth" });
 }
 
 function goToNextReview() {
-  if (!reviewsTrack) {
+  if (!reviewsTrack || reviewCards.length === 0) {
     return;
   }
 
-  const step = getReviewStep();
-  const maxLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
-  if (reviewsTrack.scrollLeft + step >= maxLeft - 4) {
-    reviewsTrack.scrollTo({ left: 0, behavior: "smooth" });
-    return;
-  }
-
-  reviewsTrack.scrollBy({ left: step, behavior: "smooth" });
+  syncCurrentReviewIndex();
+  scrollToReview(currentReviewIndex + 1);
 }
 
 function goToPrevReview() {
-  if (!reviewsTrack) {
+  if (!reviewsTrack || reviewCards.length === 0) {
     return;
   }
 
-  const step = getReviewStep();
-  const maxLeft = reviewsTrack.scrollWidth - reviewsTrack.clientWidth;
-  if (reviewsTrack.scrollLeft <= 4) {
-    reviewsTrack.scrollTo({ left: maxLeft, behavior: "smooth" });
-    return;
-  }
-
-  reviewsTrack.scrollBy({ left: -step, behavior: "smooth" });
+  syncCurrentReviewIndex();
+  scrollToReview(currentReviewIndex - 1);
 }
 
 if (reviewsNext) {
-  reviewsNext.addEventListener("click", goToNextReview);
+  reviewsNext.addEventListener("click", () => {
+    goToNextReview();
+    startReviewsAuto();
+  });
 }
 
 if (reviewsPrev) {
-  reviewsPrev.addEventListener("click", goToPrevReview);
+  reviewsPrev.addEventListener("click", () => {
+    goToPrevReview();
+    startReviewsAuto();
+  });
 }
 
 let reviewsAutoTimer = null;
@@ -168,10 +200,12 @@ function stopReviewsAuto() {
 }
 
 if (reviewsTrack) {
+  reviewsTrack.addEventListener("scroll", syncCurrentReviewIndex, { passive: true });
   reviewsTrack.addEventListener("mouseenter", stopReviewsAuto);
   reviewsTrack.addEventListener("mouseleave", startReviewsAuto);
   reviewsTrack.addEventListener("touchstart", stopReviewsAuto, { passive: true });
   reviewsTrack.addEventListener("touchend", startReviewsAuto);
+  syncCurrentReviewIndex();
   startReviewsAuto();
 }
 
