@@ -14,8 +14,7 @@ const planCta = document.querySelector("#plan-cta");
 const reviewsTrack = document.querySelector("#reviews-track");
 const reviewsPrev = document.querySelector("#reviews-prev");
 const reviewsNext = document.querySelector("#reviews-next");
-const miniSignup = document.querySelector("#mini-signup");
-const signupBtn = document.querySelector("#signup-btn");
+const emailCaptureForms = document.querySelectorAll(".js-email-capture");
 
 if (menuBtn && nav) {
   menuBtn.addEventListener("click", () => {
@@ -176,23 +175,28 @@ if (reviewsTrack) {
   startReviewsAuto();
 }
 
-if (miniSignup && signupBtn) {
-  const defaultBtnText = signupBtn.textContent;
-  miniSignup.addEventListener("submit", (event) => {
+emailCaptureForms.forEach((form) => {
+  const submitButton = form.querySelector("button[type='submit']");
+  if (!submitButton) {
+    return;
+  }
+
+  const defaultBtnText = submitButton.textContent;
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (!miniSignup.checkValidity()) {
-      miniSignup.reportValidity();
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
 
-    miniSignup.classList.add("is-sent");
-    signupBtn.textContent = "Thanks! You're in";
-    signupBtn.disabled = true;
+    form.classList.add("is-sent");
+    submitButton.textContent = "Thanks! Received";
+    submitButton.disabled = true;
 
     window.setTimeout(() => {
-      signupBtn.textContent = defaultBtnText;
-      signupBtn.disabled = false;
-      miniSignup.classList.remove("is-sent");
+      submitButton.textContent = defaultBtnText;
+      submitButton.disabled = false;
+      form.classList.remove("is-sent");
     }, 1800);
   });
-}
+});

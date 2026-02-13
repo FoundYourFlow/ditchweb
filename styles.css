@@ -639,6 +639,20 @@ li {
   margin-bottom: 16px;
 }
 
+.newsletter {
+  text-align: center;
+  background: rgba(255, 253, 249, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 36px 24px;
+}
+
+.newsletter p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
 .mini-signup {
   margin-top: 16px;
   display: inline-flex;
@@ -704,12 +718,84 @@ li {
 
 .site-footer {
   border-top: 1px solid rgba(23, 33, 34, 0.1);
-  padding: 22px 0 34px;
+  padding: 28px 0 34px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 20px;
+}
+
+.footer-grid p {
+  color: var(--muted);
+  margin: 8px 0 0;
+  max-width: 34ch;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(23, 33, 34, 0.1);
 }
 
 .site-footer p {
   margin: 0;
   color: var(--muted);
+}
+
+.page-top {
+  padding-top: 94px;
+}
+
+.support-form {
+  display: grid;
+  gap: 10px;
+  max-width: 620px;
+  margin: 12px 0 0;
+}
+
+.support-form label {
+  font-weight: 600;
+}
+
+.issue-input {
+  min-height: 140px;
+  border-radius: 12px;
+  resize: vertical;
+}
+
+.support-note {
+  margin-top: 14px;
+}
+
+.support-note a {
+  color: var(--accent);
+}
+
+.legal-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.legal-content p {
+  color: var(--muted);
+  max-width: 70ch;
 }
 
 .reveal {
@@ -835,6 +921,7 @@ li {
 @media (max-width: 900px) {
   .hero-shell,
   .onboarding-flow,
+  .footer-grid,
   .problem-outcome .cards,
   .cards,
   .pricing-grid,
